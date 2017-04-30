@@ -1,0 +1,55 @@
+.right {
+	float:right !important;
+}
+.left {
+	float:left;
+}
+.notif {
+	background:#df6a6a;
+	padding:3px;
+	color:#fff;
+	margin-left:5px;
+	border-radius:10px;
+}
+
+.profile {
+	width:32px;
+	height:35px;
+	position: absolute;
+	left:-33px;
+	top:-1px;
+	border: 1px solid #df6a6a;
+}
+
+.change-profile {
+	width: 100%;
+	margin-bottom:10px;
+}
+
+.file{
+	width: 100%;
+	padding:7px;
+	font-weight: bold;
+	font-size: 12px;
+	background: #df6a6a;
+	border:1px solid #df6a6a;
+	text-decoration: none;
+	color: #fff;
+	font-family: 'segoe ui';
+	cursor: pointer;
+	-webkit-transition: all .3s ease-out;
+
+}
+
+.profile-picture {
+	margin-bottom:10px;
+	width: 99%;
+	border: 1px solid #df6a6a;
+	color: #fff;
+}
+
+.file:hover{
+	background: #c56363;
+	border:1px solid #c56363;
+	-webkit-transition: all .3s ease-out;
+}
