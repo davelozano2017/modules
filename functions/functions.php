@@ -170,11 +170,11 @@ function register() {
 			$status			= 'Not Active';
 			switch ($gender) {
 				case 'Male':
-				$photos = 'uploads/default_male.png';
+				$photos = 'uploads/default_male.jpg';
 				break;
 
 				case 'Female':
-				$photos = 'uploads/default_female.png';
+				$photos = 'uploads/default_female.jpg';
 				break;
 				
 				default:
@@ -290,10 +290,11 @@ function register() {
 									type: "success",  
 									showConfirmButton: false 
 								});
+								
 								</script>
 								<?php
 								$case_link 	 = $code;
-								$reqire_link = 'pages/generated/'.$activation.'.php';
+								$reqire_link = 'pages/generated/'.$username.'.php';
 								$link = $db->query("INSERT INTO generated_tbl (email,case_link,require_link) VALUES ('$email','$case_link','$reqire_link')");
 
 								$_SESSION['status'] = $activation;
@@ -302,7 +303,7 @@ function register() {
 									$id = '"$id"';
 									$c = "'";
 									$stats = 'Active';
-									$fp=fopen('pages/generated/'.$activation.'.php','w');
+									$fp=fopen('pages/generated/'.$username.'.php','w');
 									fwrite($fp,'
 										<?php if(empty($_SESSION["status"])) {
 											header("location:login");
@@ -354,7 +355,7 @@ function register() {
 				if (isset($username)) { 
 				if (trim($username) == '')
 				die('data cannot be empty! <a href="?">back</a>');
-				$filename = 'pages/guest/temp/'.md5($username.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
+				$filename = 'pages/guest/temp/'.$username.'.png';
 				QRcode::png($username, $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
 				} else {    
 					QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);    

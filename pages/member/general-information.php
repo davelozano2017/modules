@@ -31,6 +31,7 @@ all();
 				</li>
 				<li><a href="add-friend"><?php echo$_SESSION['counts']?></a></li>
 				<li class="right"><a href="#"><img class="profile" src="<?php echo$_SESSION['photos']?>"><?php echo$_SESSION['firstname']?></a></li>
+				<?php echo$_SESSION['photos']?>
 			</ul>
 		</div>
 

@@ -67,10 +67,10 @@ require 'functions/functions.php';
 <script src="js/parsleyjs/dist/parsley.min.js"></script>
 <script>load();</script>
 <script>
-var lastValue = '';
+var x = '';
 setInterval(function() {
-    if ($("#results").val() != lastValue) {
-        lastValue = $("#results").val();
+    if ($("#results").val() != x) {
+        x = $("#results").val();
         $("form").submit();
     }
 }, 500)

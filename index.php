@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 session_start();
 include('class/url.php');
 include('functions/config.php');
@@ -8,21 +9,27 @@ $page = '';
 else
 $page = $url ->segment(1);
 
- @$query = $db->query("SELECT * FROM generated_tbl");
-    while (@$row  = $query->fetch_object()) {
-    $case_link    = $row->case_link;
-    $require_link = $row->require_link;
+ $query = $db->query("SELECT * FROM generated_tbl");
+ $count = count($query);
+ if($count == 0) {
+  exit();
+ } else {
+      while ($row   = $query->fetch_object()) {
+      $case_link    = $row->case_link;
+      $require_link = $row->require_link;
 
-    switch ($page) {
-    case $case_link:
-      require $require_link;
-    break;
+      switch ($page) {
+      case $case_link:
+        require $require_link;
+      break;
 
-    default : //404 Page
-    break;
+      default : //404 Page
+      break;
 
+      }
     }
-  }
+ }
+ http://localhost/modules/$2y$103h35CEHaa1b6a1db95845CA1E76b522d1b5H9HB5G3Cia62bE501a5C2g4AH5
   
 switch ($page) {
   
