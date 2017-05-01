@@ -365,8 +365,7 @@ function register() {
 									</body>
 									</html>');
 								fclose($fp);
-								}
-			
+							}
 						}
 					}
 				}
