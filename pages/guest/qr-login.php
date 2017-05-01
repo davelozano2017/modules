@@ -8,7 +8,7 @@ require 'functions/functions.php';
 	<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	<script type="text/javascript" src="js/sweetalert-dev.js"></script>
 	<script type="text/javascript" src="js/sweetalert.min.js"></script>
-	<style type="text/css">#v{width:100%;}#qr-canvas {display: none;}</style>
+	<style type="text/css">#v{width:100%;}#qr-canvas {display: none;}#qrfile{position:relative;top:-50px;}</style>
 </head>
 <body>
 
@@ -42,6 +42,8 @@ require 'functions/functions.php';
 						<input type="text" name="username" id="results" required>
 
 				</form>
+				<input type="submit" id="webcamimg" onclick="setwebcam()" align="left" value="Camera" />
+				<input type="submit" id="qrimg" onclick="setimg()" align="left" value="Upload QR Code" />
 				<div class="links-container">
 					<ul>
 						<li><a href="create-account">create  new account</a></li>
@@ -61,8 +63,6 @@ require 'functions/functions.php';
 <script src="js/webqr.js"></script>
 <canvas id="qr-canvas"></canvas>
 <div id="result" style="visibility: hidden;"></div>
-<img class="selector" id="webcamimg" onclick="setwebcam()" align="left" />
-<img class="selector" id="qrimg"  onclick="setimg()" align="right"/>
 <script src="js/jquery.min.js"></script>
 <script src="js/parsleyjs/dist/parsley.min.js"></script>
 <script>load();</script>

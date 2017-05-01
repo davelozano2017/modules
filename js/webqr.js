@@ -12,7 +12,6 @@ var v=null;
 
 var imghtml='<div id="qrfile"><canvas id="out-canvas" width="320" height="240"></canvas>'+
     '<div id="imghelp">drag and drop a QRCode here'+
-    '<br>or select a file'+
     '<input type="file" onchange="handleFiles(this.files)"/>'+
     '</div>'+
 '</div>';
