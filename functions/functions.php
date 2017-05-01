@@ -238,6 +238,28 @@ function register() {
 
 
 					} else {
+
+					$level = 'H';
+					$size = 5;
+					$PNG_WEB_DIR = 'pages/guest/temp/';
+					include "pages/guest/lib/qrlib.php";    
+					if (!file_exists('pages/guest/temp/'))
+						mkdir('pages/guest/temp/');
+						$errorCorrectionLevel = 'L';
+						if (isset($_REQUEST['level']) && in_array($_REQUEST['level'], array('L','M','Q','H')))
+							$errorCorrectionLevel = $_REQUEST['level'];  
+						$matrixPointSize = 4;
+						if (isset($_REQUEST['size']))
+							$matrixPointSize = min(max((int)$_REQUEST['size'], 1), 10);
+						if (isset($username)) { 
+						if (trim($username) == '')
+						die('data cannot be empty! <a href="?">back</a>');
+						$filename = 'pages/guest/temp/'.$username.'.png';
+						QRcode::png($username, $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
+						} else {    
+							QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
+						}  
+
 						$SMTP_row 		= $SMTP_query->fetch_object();
 						$SMTP_socket	= $SMTP_row->smtp_socket;
 						$SMTP_security	= $SMTP_row->smtp_security;
@@ -254,6 +276,7 @@ function register() {
 						$mailer->Username = $SMTP_email; 
 						$mailer->Password = $SMTP_password; 
 						$mailer->From = $SMTP_from; 
+						$mailer->AddEmbeddedImage($filename, $username, $username);
 						$mailer->FromName = 'Modules - Activate your account.';
 						$mailer->Body =  
 						'
@@ -263,6 +286,10 @@ function register() {
 						<a href="http://localhost/modules/'.$code.'"  style="margin:auto;text-align:center;text-decoration:none;border:#eee solid 1px;background:#336699;color:#fff;padding:20px;font-weight:bolder">CLICK ME TO ACTIVATE YOUR ACCOUNT</a>
 						</h4>
 						<br>
+						<h4 style="text-align:center;margin:auto">
+						This is your Qr Code. You can use it to login your account.
+						<img style="width:250px"height:250px" alt="Qr Code" src="cid:'.$username.'">
+						</h4>
 						</div>    
 						';
 						$mailer->Subject = 'Modules - Activate your account.';
@@ -339,30 +366,10 @@ function register() {
 									</html>');
 								fclose($fp);
 								}
-							$level = 'H';
-						$size = 5;
-					$PNG_WEB_DIR = 'pages/guest/temp/';
-				include "pages/guest/lib/qrlib.php";    
-			if (!file_exists('pages/guest/temp/'))
-				mkdir('pages/guest/temp/');
-				$filename = 'pages/guest/temp/test.png';
-				$errorCorrectionLevel = 'L';
-				if (isset($_REQUEST['level']) && in_array($_REQUEST['level'], array('L','M','Q','H')))
-					$errorCorrectionLevel = $_REQUEST['level'];  
-				$matrixPointSize = 4;
-				if (isset($_REQUEST['size']))
-					$matrixPointSize = min(max((int)$_REQUEST['size'], 1), 10);
-				if (isset($username)) { 
-				if (trim($username) == '')
-				die('data cannot be empty! <a href="?">back</a>');
-				$filename = 'pages/guest/temp/'.$username.'.png';
-				QRcode::png($username, $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
-				} else {    
-					QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
-				}  
-			}
-		}
-	}
+			
+						}
+					}
+				}
 			}
 		}
 	}
